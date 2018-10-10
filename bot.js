@@ -18,10 +18,12 @@ client.on('message', message => {
         if(reason.length < 1) return message.reply(`Set a reason!`)
         var embed = new Discord.RichEmbed()
         .setTitle(`New Warning!`)
-        .addField(`For`, `<@${p.user.id}`)
+        .addField(`For`, `<@${p.user.id}>`)
         .addField(`By`, `<@${message.author.id}>`)
         .addField(`Reason`, reason)
         .addField(`In Chat`, `<#${message.channel.id}>`)
+          message.delete();
+        message.channel.send(`${p} ` + reason)
         log.send({embed})
     }
 });
