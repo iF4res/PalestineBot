@@ -5,7 +5,9 @@ const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => { 
-  console.log('Hi')
+  console.log('Loggen in As ${client.user.username}')
+ client.user.setGame(`${prefix}help`, "https://twitch.tv/F4res")
+ client.user.setStatus(`Idel`)
 });
 
 
