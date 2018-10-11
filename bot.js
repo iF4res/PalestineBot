@@ -102,3 +102,15 @@ client.on('message', message => {
         log.send({embed})
     }
 });
+
+
+client.on('message', message => {
+    if(message.content.startsWith(prefix + "support")){
+        var embed = new Discord.RichEmbed()
+        .setTitle(`ClickHere`)
+        .setDescription(`PalestineBot Support Server`)
+        .setURL("https://discord.gg/yRHuwq")
+        .setColor("BLACK")
+        message.channel.send({embed})
+    }
+});
