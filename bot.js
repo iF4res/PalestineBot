@@ -6,7 +6,7 @@ client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => { 
   console.log('Loggen in As ${client.user.username}')
- client.user.setGame(`PalestineBot By PalestineCompany`, "https://twitch.tv/F4res")
+ client.user.setGame(`${prefix}help`, "https://twitch.tv/F4res")
  client.user.setStatus(`Idel`)
 });
 
@@ -26,8 +26,8 @@ client.on('message', message => {
         .addField(`Reason`, reason)
         .addField(`In Chat`, `<#${message.channel.id}>`)
         .setColor("WHITE")
+          message.channel.send(`${p} ` + reason)
           message.delete();
-        message.channel.send(`${p} ` + reason)
         log.send({embed})
     }
 });
@@ -48,8 +48,8 @@ client.on('message', message => {
         .addField(`Reason`, reason)
         .addField(`In Chat`, `<#${message.channel.id}>`)
         .setColor("RED")
+          message.channel.send(`<@${message.author.id}>, **Done**`)
           message.delete();
-        message.channel.send(`<@${message.author.id}>, **Done**`)
         log.send({embed})
     }
 });
@@ -71,9 +71,9 @@ client.on('message', message => {
         .addField(`Reason`, reason)
         .addField(`In Chat`, `<#${message.channel.id}>`)
         .setColor("RED")
+          message.channel.send(`**تم حفظ السبب وستتم مراجعته من قبل المسؤولين**`)
           message.delete();
-          p.addRole(message.guild.roles.find('name', "Muted"));
-        message.channel.send(`**تم حفظ السبب وستتم مراجعته من قبل المسؤولين**`)
+           p.addRole(message.guild.roles.filter('name', "Muted"));
         log.send({embed})
     }
 });
