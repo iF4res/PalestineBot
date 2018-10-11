@@ -128,7 +128,7 @@ client.on('message', message => {
 
 client.on('guildMemberAdd', member => {
     let welcome = member.guild.channels.find('name', "welcomer")
-    let rank = member.guild.roles.find('name', "◆ Members ◆");
+    let Rank = member.guild.roles.find('name', "◆ Member ◆");
     var embed = new Discord.RichEmbed()
     .setTitle(`Welcome!!`)
     .addField(`Welcome to ${member.guild.name}`, `<@${member}>`)
