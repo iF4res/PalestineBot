@@ -27,6 +27,8 @@ client.on('message', message => {
         .addField(`Reason`, reason)
         .addField(`In Chat`, `<#${message.channel.id}>`)
         .setColor("WHITE")
+        .setTimestamp()
+        .setFooter(" ")
             message.channel.send(`${p} ` + reason)
             message.delete();
         log.send({embed})
@@ -50,6 +52,8 @@ client.on('message', message => {
         .addField(`Reason`, reason)
         .addField(`In Chat`, `<#${message.channel.id}>`)
         .setColor("RED")
+        .setTimestamp()
+        .setFooter(" ")
             message.channel.send(`<@${message.author.id}>, **Done**`)
             message.delete();
         log.send({embed})
@@ -73,7 +77,9 @@ client.on('message', message => {
         .addField(`By`, `<@${message.author.id}>`)
         .addField(`Reason`, reason)
         .addField(`In Chat`, `<#${message.channel.id}>`)
-        .setColor("RED")
+        .setColor("BLACK")
+        .setTimestamp()
+        .setFooter(" ")
             p.addRole(message.guild.roles.find('name', "Muted"));
             message.channel.send(`**تم حفظ السبب وستتم مراجعته من قبل المسؤولين**`)
             message.delete();
@@ -95,7 +101,9 @@ client.on('message', message => {
         .addField(`For`, `<@${p.user.id}>`)
         .addField(`By`, `<@${message.author.id}>`)
         .addField(`In Chat`, `<#${message.channel.id}>`)
-        .setColor("RED")
+        .setColor("PURPLE")
+        .setTimestamp()
+        .setFooter(" ")
             p.removeRole(message.guild.roles.find('name', "Muted"));
             message.channel.send(`<@${message.author.id}>, **Done**`)
             message.delete();
@@ -111,6 +119,20 @@ client.on('message', message => {
         .setDescription(`PalestineBot Support Server`)
         .setURL("https://discord.gg/yRHuwq")
         .setColor("BLACK")
+        .setTimestamp()
+        .setFooter(" ")
         message.channel.send({embed})
     }
+});
+
+
+client.on('guildMemberAdd', member => {
+    let welcome = member.guild.channels.find('name', "welcomer")
+    let rank = member.guild.roles.find('name', "");
+    var embed = new Discord.RichEmbed()
+    .setTitle(`Welcome!!`)
+    .addField(`Welcome to ${member.guild.name}`, `<@${member}>`)
+    .addField(`You are the member number!`, `**${member.guild.memberCount}**`)
+    welcome.send({embed})
+    member.addRole(Rank)
 });
