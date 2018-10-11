@@ -6,7 +6,7 @@ client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => { 
   console.log('Loggen in As ${client.user.username}')
- client.user.setGame(`${prefix}help`, "https://twitch.tv/F4res")
+ client.user.setGame(`PalestineBot By PalestineCompany`, "https://twitch.tv/F4res")
  client.user.setStatus(`Idel`)
 });
 
