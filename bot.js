@@ -72,6 +72,7 @@ client.on('message', message => {
         .addField(`In Chat`, `<#${message.channel.id}>`)
         .setColor("RED")
           message.delete();
+          p.addRole(message.guild.roles.find('name', "Muted"));
         message.channel.send(`**تم حفظ السبب وستتم مراجعته من قبل المسؤولين**`)
         log.send({embed})
     }
