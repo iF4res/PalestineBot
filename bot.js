@@ -178,22 +178,3 @@ client.on('message', message => {
     message.author.ban();
   }
 });
-
-
-client.on('message',async message => {
-    if(message.content.startsWith(prefix + "connectv")) {
-    if(message.author.bot) return;
-    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('**You Don't have permissions**');
-    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('**You Don't have permissions**');
-    message.channel.send('**Done**');
-    message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
-      c.overwritePermissions(message.guild.id, {
-        CONNECT: false,
-        SPEAK: false
-      });
-      setInterval(function() {
-        c.setName(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]`)
-      },1000);
-    });
-    }
-  });
