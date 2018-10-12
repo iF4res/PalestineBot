@@ -159,7 +159,7 @@ client.on('message', message => {
 client.on('message', message => {
   if(message.content.startsWith(prefix + 'loc')){
     if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`**:x: | This Command is Just for Adminstration**`);
-    message.channel.overwritePermission(message.channel.id, {
+    message.channel.overwritePermissions(message.channel.id, {
       SEND_MESSAGE: false
     }).then(() => {
       message.channel.send('**Done**')
