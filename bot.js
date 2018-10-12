@@ -175,6 +175,6 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('No Pe
 client.on('message', message => { 
   if(message.content.includes('https://discord.gg')){
     message.delete();
-    message.author.ban();
+    message.m.ban();
   }
 });
