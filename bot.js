@@ -154,3 +154,15 @@ client.on('message', message => {
         message.channel.send({embed})
     }
 });
+
+
+client.on('message', message => {
+  if(message.content.startsWith(prefix + 'loc')){
+    if(message.member.hasPermission('ADMINSTRATION')) return message.reply(`**:x: | This Command is Just for Adminstration**`);
+    message.channel.overwritePermission(message.channel.id, {
+      SEND_MESSAGE: false
+    }).then(() => {
+      message.channel.send('**Done**')
+    })
+  }
+});
