@@ -11,7 +11,7 @@ client.on('ready', () => {
 });
 
 
-client.on('message', mesage => {
+client.on('message', message => {
   if(message.content.startsWith(prefix + 'help')){
     var embed = new Discord.RichEmbed()
     .setTitle(`${client.user.username}#${client.user.discrimination}'s Help`)
