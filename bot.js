@@ -189,7 +189,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('No Pe
   
   }).then(messages => message.channel.bulkDelete(messages));
   message.channel.sendMessage("", {embed: {
-    title: "``✏️✅ تــم مسح الشات ``",
+    title: "Done | Chat Cleared.",
     color: 0x06DF00,
     footer: {
     
