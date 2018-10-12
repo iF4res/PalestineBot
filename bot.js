@@ -126,6 +126,20 @@ client.on('message', message => {
 });
 
 
+client.on('message', message => {
+    if(message.content.startsWith(prefix + 'invite")){
+        var embed = new Discord.RichEmbed()
+        .setTitle(`ClickHere`)
+        .setDescription(`PalestineBot Bot Invite`)
+        .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot`)
+        .setColor("BLACK")
+        .setTimestamp()
+        .setFooter(" ")
+        message.channel.send({embed})
+    }
+});
+
+
 client.on('guildMemberAdd', member => {
     let welcome = member.guild.channels.find('name', "welcomer")
     let Rank = member.guild.roles.find('name', "◆ Member ◆");
