@@ -161,7 +161,7 @@ client.on('message', message => {
     if (message.content === `${prefix}LOCK`) {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات لأغلاق الروم');
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('No Perms');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
 
@@ -181,7 +181,7 @@ client.on('message', message => {
 
 
 client.on('message',async message => {
-    if(message.content.startsWith(prefix + "onnectv")) {
+    if(message.content.startsWith(prefix + "connectv")) {
     if(message.author.bot) return;
     if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('**You Don't have permissions**');
     if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('**You Don't have permissions**');
