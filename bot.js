@@ -144,6 +144,7 @@ client.on('message', message => {
     if(message.content.startsWith(prefix + "bot")){
         var embed = new Discord.RichEmbed()
         .setTitle(`${client.user.username}'s Status`)
+        .setThumbnail(client.user.avatarURL)
         .addField(`Channels`, `${client.channels.size}`)
         .addField(`Users`, `${client.users.size}`)
         .addField(`Guilds`, `${client.guilds.size}`)
