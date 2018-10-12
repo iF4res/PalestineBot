@@ -6,7 +6,7 @@ client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => { 
   console.log('Loggen in As ${client.user.username}')
- client.user.setGame(`PalestineBot By F4res`, "https://twitch.tv/F4res")
+ client.user.setGame(`PalestineBot | ${client.guild.size}/25`, "https://twitch.tv/F4res")
  client.user.setStatus(`Idel`)
 });
 
@@ -140,13 +140,3 @@ client.on('message', message => {
 });
 
 
-client.on('guildMemberAdd', member => {
-    let welcome = member.guild.channels.find('name', "welcomer")
-    let Rank = member.guild.roles.find('name', "◆ Member ◆");
-    var embed = new Discord.RichEmbed()
-    .setTitle(`Welcome!!`)
-    .addField(`Welcome to ${member.guild.name}`, `<@${member}>`)
-    .addField(`You are the member number!`, `**${member.guild.memberCount}**`)
-    welcome.send({embed})
-    member.addRole(Rank)
-});
