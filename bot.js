@@ -175,7 +175,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('No Pe
  client.on('message', message => {
     if (message.content.startsWith(prefix + 'clear')) {
       if(!message.channel.guild) return;
-  if (!message.member.roles.find('name', 'اسم الرتبة الي يمديها تسوي كلير')) return ;
+  if (!message.member.hasPermission('ADMINSTRSTOR')) return ;
       
   message.delete()
   if(!message.channel.guild) return;
