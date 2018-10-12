@@ -18,7 +18,7 @@ client.on('message', message => {
     .addField('${prefix}help', `**To Get the help List**`)
     .addField('${prefix}warn', `**To Warn a user**`)
     .setColor("RANDOM")
-    .setTimestamps()
+    .setTimestamp()
     .setFooter(" ")
     message.channel.send({embed})
   }
