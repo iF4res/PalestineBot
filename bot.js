@@ -158,7 +158,7 @@ client.on('message', message => {
 
 client.on('message', message => {
 
-    if (message.content === `${prefix}LOCK`) {
+    if (message.content.startsWith(prefix + `lock`)) {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('No Perms');
@@ -170,12 +170,3 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('No Pe
            });
              }
            });
-
-
-client.on('message', message => {
-  let p = message.author;
-  if(message.content.includes('https://discord.gg')){
-    message.delete();
-    p.ban();
-  }
-});
