@@ -127,7 +127,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if(message.content.startsWith(prefix + 'invite")){
+    if(message.content.startsWith(prefix + "invite")){
         var embed = new Discord.RichEmbed()
         .setTitle(`ClickHere`)
         .setDescription(`PalestineBot Bot Invite`)
