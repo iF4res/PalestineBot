@@ -72,7 +72,7 @@ client.on('message', message => {
             message.delete();
         if(p.roles.find('name', "Muted")) return message.reply(`**تم اسكات هذا العضو مسبقاً**`)
         var embed = new Discord.RichEmbed()
-        .setTitle(`New Ban!`)
+        .setTitle(`New Mute!`)
         .addField(`For`, `<@${p.user.id}>`)
         .addField(`By`, `<@${message.author.id}>`)
         .addField(`Reason`, reason)
