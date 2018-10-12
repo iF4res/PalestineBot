@@ -157,12 +157,16 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-  if(message.content.startsWith(prefix + 'loc')){
-    if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`**:x: | This Command is Just for Adminstration**`);
-    message.channel.overwritePermissions(message.channel.id, {
-      SEND_MESSAGE: false
-    }).then(() => {
-      message.channel.send('**Done**')
-    })
-  }
-});
+
+    if (message.content === prefix + "lock") {
+                        if(!message.channel.guild) return message.reply(' This command only for servers');
+
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات لأغلاق الروم');
+           message.channel.overwritePermissions(message.guild.id, {
+         SEND_MESSAGES: false
+
+           }).then(() => {
+               message.channel.send("Done")
+           });
+             }
+           });
