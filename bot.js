@@ -158,7 +158,7 @@ client.on('message', message => {
 
 client.on('message', message => {
 
-    if (message.content === prefix + "lock") {
+    if (message.content === `${prefix}LOCK`) {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات لأغلاق الروم');
