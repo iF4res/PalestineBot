@@ -138,3 +138,18 @@ client.on('message', message => {
         message.channel.send({embed})
     }
 });
+
+
+client.on('message', message => {
+    if(message.content.startsWith(prefix + "bot")){
+        var embed = new Discord.RichEmbed()
+        .setTitle(`${client.user.username}'s Status`)
+        .addField(`Channels`, `${client.channels.size}`)
+        .addField(`Users`, `${client.users.size}`)
+        .addField(`Guilds`, `${client.guilds.size}`)
+        .setColor("RANDOM")
+        .setTimestamp()
+        .setFooter(" ")
+        message.channel.send({embed})
+    }
+});
