@@ -89,7 +89,7 @@ client.on('message', message => {
         if(!p) return message.reply(`Mention a User!`);
       if(!p.roles.find('name', "Muted")) return message.reply(`**This user is not Muted**`);
         var embed = new Discord.RichEmbed()
-        .setTitle(`New Mute!`)
+        .setTitle(`New Unmute!`)
         .addField(`For`, `<@${p.user.id}>`)
         .addField(`By`, `<@${message.author.id}>`)
         .addField(`In Chat`, `<#${message.channel.id}>`)
