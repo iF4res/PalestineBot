@@ -88,5 +88,6 @@ client.on('message', message => {
     .setColor("ORANGE")
     .setTimestamp();
     .setFooter(" ")
+    message.channel.send({embed})
   }
 });
