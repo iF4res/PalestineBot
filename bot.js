@@ -14,7 +14,7 @@ client.on('ready', () => {
 client.on('message', message => {
   if(message.content.startsWith(prefix + 'help')){
     var embed = new Discord.RichEmbed()
-    .setTitle(`${client.user.username}#${client.user.discrimation}'s Help`)
+    .setTitle(`${client.user.username}#${client.user.discriminator}'s Help`)
     .addField(`${prefix}help`, `**To Get the help List**`)
     .addField(`${prefix}warn`, `**To Warn a user**`)
     .setColor("RANDOM")
