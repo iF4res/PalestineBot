@@ -62,7 +62,7 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
-        if(reason !== message.content('prnt.scr')) return;
+        if(reason !== 'prnt.scr') return;
       if(p.roles.find('name', "Muted")) return message.reply(`**This user is Muted before**`);
         var embed = new Discord.RichEmbed()
         .setTitle(`New Mute!`)
