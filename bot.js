@@ -106,6 +106,38 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
+    let reason = message.content.split(" ").slice(2).join(' ');
+const reasons = [
+"سب اهل",
+"نشر"
+];
+
+var rs = reasons[ parseInt(reason) ];
+
+if(reason) message.channel.send(`**To see the reasons type $banof list**`)
+    let p = message.mentions.members.first();
+    if(message.content.startsWith(prefix + "ban")){
+        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+            message.delete();
+        if(!p) return message.reply(`Mention a User!`);
+        if(reason.length < 1) return message.reply(`Set a reason!`)
+        var embed = new Discord.RichEmbed()
+        .setTitle(`New Ban!`)
+        .addField(`For`, `<@${p.user.id}>`)
+        .addField(`By`, `<@${message.author.id}>`)
+        .addField(`Reason`, rs)
+        .addField(`In Chat`, `<#${message.channel.id}>`)
+        .setColor("BLACK")
+        .setTimestamp()
+        .setFooter(" ")
+            message.delete();
+        log.send({embed})
+    }
+});
+
+
+client.on('message', message => {
   if(message.content.startsWith(prefix + "bot")){
     var embed = new Discord.RichEmbed()
     .setTitle(`${client.user.username}#${client.user.discriminator}'s Status`)
