@@ -133,7 +133,7 @@ client.on('message', message => {
         .setColor("BLACK")
         .setTimestamp()
         .setFooter(" ")
-            message.channel.send(`<${message.author.id}>, **Done**`)
+            message.channel.send(`<@${message.author.id}>, **Done**`)
             message.delete();
         log.send({embed})
     }
