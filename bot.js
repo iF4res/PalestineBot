@@ -98,7 +98,7 @@ client.on('message', message => {
         .setFooter(" ")
             message.channel.send(`**<@${message.author.id}>, Done**`)
             message.delete();
-            p.addRole(message.guild.roles.find('name', "Muted"));
+            p.removeRole(message.guild.roles.find('name', "Muted"));
         log.send({embed})
     }
 });
