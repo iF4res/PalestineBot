@@ -86,7 +86,7 @@ client.on('message', message => {
     .addField(`Channels`, `${client.channels.size}`)
     .addField(`Users`, `${client.users.size}`)
     .setColor("ORANGE")
-    .setTimestamp();
+    .setTimestamp()
     .setFooter(" ")
     message.channel.send({embed})
   }
