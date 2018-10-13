@@ -124,6 +124,9 @@ client.on('message', message => {
     if(reason.includes('8')) reason = reason.replace('8', '**صوره غير لائقه**');
     if(reason.includes('9')) reason = reason.replace('9', '**عنصريه**');
     if(reason.includes('10')) reason = reason.replace('10', '**دخول باكثر من حساب ومو متبند**');
+      else {
+//code
+}
         var embed = new Discord.RichEmbed()
         .setTitle(`New Ban!`)
         .addField(`For`, `<@${p.user.id}>`)
