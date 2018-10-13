@@ -148,7 +148,7 @@ client.on('message', message => {
     var rs = ['**نشر سيرفرات الخاص**', '**سب في الرومات الصوتيه**', '**استخدام برامج تغيير صوت**', '**ازعاج الاداره والاعضاء في الرومات العامه**', '**سب الشخص مسبات قويه ولم ياخذ ميوت**', '**اسم مسيء - غير لائق**', '**سب الاهل**', '**صوره غير لائقه**', '**عنصريه**', '**دخول باكثر من حساب ومو متبند**'];
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
-    if(message.content.startsWith(prefix + "bban")){
+    if(message.content.startsWith(prefix + "ban")){
         if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
@@ -164,8 +164,8 @@ client.on('message', message => {
     || reason.includes('9')
     || reason.includes('10')) {
         reason = rs[parseInt(reason)];
-
     }
+    else message.reply('هذا مو ريزون يا بقرة');
         var embed = new Discord.RichEmbed()
         .setTitle(`New Ban!`)
         .addField(`For`, `<@${p.user.id}>`)
