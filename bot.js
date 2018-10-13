@@ -144,6 +144,45 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
+    var rs = ['**نشر سيرفرات الخاص**', '**سب في الرومات الصوتيه**', '**استخدام برامج تغيير صوت**', '**ازعاج الاداره والاعضاء في الرومات العامه**', '**سب الشخص مسبات قويه ولم ياخذ ميوت**', '**اسم مسيء - غير لائق**', '**سب الاهل**', '**صوره غير لائقه**', '**عنصريه**', '**دخول باكثر من حساب ومو متبند**'];
+    let reason = message.content.split(" ").slice(2).join(' ');
+    let p = message.mentions.members.first();
+    if(message.content.startsWith(prefix + "bban")){
+        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+            message.delete();
+        if(!p) return message.reply(`Mention a User!`);
+        if(reason.length < 1) return message.reply(`Set a reason!`);
+    if(reason.includes('1') 
+    || reason.includes('2') 
+    || reason.includes('3') 
+    || reason.includes('4') 
+    || reason.includes('5') 
+    || reason.includes('6') 
+    || reason.includes('7')
+    || reason.includes('8')
+    || reason.includes('9')
+    || reason.includes('10')) {
+        reason = rs[parseInt(reason)];
+
+    }
+        var embed = new Discord.RichEmbed()
+        .setTitle(`New Ban!`)
+        .addField(`For`, `<@${p.user.id}>`)
+        .addField(`By`, `<@${message.author.id}>`)
+        .addField(`Reason`, reason)
+        .addField(`In Chat`, `<#${message.channel.id}>`)
+        .setColor("BLACK")
+        .setTimestamp()
+        .setFooter(" ")
+            message.channel.send(`<@${message.author.id}>, **Done**`)
+            message.delete();
+        log.send({embed})
+    }
+});
+
+
+client.on('message', message => {
   if(message.content.startsWith(prefix + "bot")){
     var embed = new Discord.RichEmbed()
     .setTitle(`${client.user.username}#${client.user.discriminator}'s Status`)
