@@ -114,7 +114,16 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`);
-    if(reason.includes('0')) reason = reason.replace('0', 'سب الاهل'); 
+    if(reason.includes('1')) reason = reason.replace('1', '**نشر سيرفرات الخاص**'); 
+    if(reason.includes('2')) reason = reason.replace('2', '**سب في الرومات الصوتيه**');
+    if(reason.includes('3')) reason = reason.replace('3', '**استخدام برامج تغيير صوت**');
+    if(reason.includes('4')) reason = reason.replace('4', '**ازعاج الاداره والاعضاء في الرومات العامه**');
+    if(reason.includes('5')) reason = reason.replace('5', '**سب الشخص مسبات قويه ولم ياخذ ميوت**');
+    if(reason.includes('6')) reason = reason.replace('6', '**اسم مسيء - غير لائق**');
+    if(reason.includes('7')) reason = reason.replace('7', '**سب الاهل**');
+    if(reason.includes('8')) reason = reason.replace('8', '**صوره غير لائقه**');
+    if(reason.includes('9')) reason = reason.replace('9', '**عنصريه**');
+    if(reason.includes('10')) reason = reason.replace('10', '**دخول باكثر من حساب ومو متبند**');
         var embed = new Discord.RichEmbed()
         .setTitle(`New Ban!`)
         .addField(`For`, `<@${p.user.id}>`)
