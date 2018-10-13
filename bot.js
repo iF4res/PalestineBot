@@ -18,6 +18,8 @@ client.on('message', message => {
     .addField(`${prefix}help`, `**To Get the help List**`)
     .addField(`${prefix}warn`, `**To Warn a user**`)
     .addField(`${prefix}mute`, `**To Mute a user**`)
+    .addField(`${prefix}unmute`, `**To Unmute a user**`)
+    .addField(`${prefix}bot`, `**To see the bot status**`)
     .setColor("GREEN")
     .setTimestamp()
     .setFooter(" ")
@@ -79,6 +81,30 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
+    let p = message.mentions.members.first();
+    if(message.content.startsWith(prefix + "unmute")){
+        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+            message.delete();
+        if(!p) return message.reply(`Mention a User!`);
+      if(!p.roles.find('name', "Muted")) return message.reply(`**This user is not Muted**`);
+        var embed = new Discord.RichEmbed()
+        .setTitle(`New Mute!`)
+        .addField(`For`, `<@${p.user.id}>`)
+        .addField(`By`, `<@${message.author.id}>`)
+        .addField(`In Chat`, `<#${message.channel.id}>`)
+        .setColor("PURPLE")
+        .setTimestamp()
+        .setFooter(" ")
+            message.channel.send(`**<@${message.author.id}>, Done**`)
+            message.delete();
+            p.addRole(message.guild.roles.find('name', "Muted"));
+        log.send({embed})
+    }
+});
+
+
+client.on('message', message => {
   if(message.content.startsWith(prefix + "bot")){
     var embed = new Discord.RichEmbed()
     .setTitle(`${client.user.username}#${client.user.discriminator}'s Status`)
@@ -86,6 +112,8 @@ client.on('message', message => {
     .addField(`Channels`, `${client.channels.size}`)
     .addField(`Users`, `${client.users.size}`)
     .setColor("ORANGE")
+    .setTimestamp()
+    .setFooter(" ")
     message.channel.send({embed})
   }
 });
