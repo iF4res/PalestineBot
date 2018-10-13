@@ -18,7 +18,7 @@ client.on('message', message => {
     .addField(`${prefix}help`, `**To Get the help List**`)
     .addField(`${prefix}warn`, `**To Warn a user**`)
     .addField(`${prefix}mute`, `**To Mute a user**`)
-    .setColor("RANDOM")
+    .setColor("GREEN")
     .setTimestamp()
     .setFooter(" ")
     message.channel.send({embed})
@@ -75,4 +75,18 @@ client.on('message', message => {
             p.addRole(message.guild.roles.find('name', "Muted"));
         log.send({embed})
     }
+});
+
+
+client.on('message', message => {
+  if(message.content.startsWith(prefix + "bot")){
+    var embed = new Discord.RichEmbed()
+    .setTitle(`${client.user.username}#${client.user.discriminator}'s Status`)
+    .addField(`Guilds`, `${client.guilds.size}`)
+    .addField(`Channels`, `${client.channels.size}`)
+    .addField(`Users`, `${client.users.size}`)
+    .setColor("ORANGE")
+    .setTimestamp();
+    .setFooter(" ")
+  }
 });
