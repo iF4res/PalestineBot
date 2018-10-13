@@ -62,7 +62,7 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
-        if(!reason.includes("https://prnt.scr/")) return message.reply(`**The rrason must be https://prnt.scr photo**`);
+        if(!reason.includes("https://prnt.scr/")) return message.reply(`**The reason must be https://prnt.scr photo**`);
       if(p.roles.find('name', "Muted")) return message.reply(`**This user is Muted before**`);
         var embed = new Discord.RichEmbed()
         .setTitle(`New Mute!`)
@@ -124,6 +124,7 @@ client.on('message', message => {
     if(reason.includes('8')) reason = reason.replace('8', '**صوره غير لائقه**');
     if(reason.includes('9')) reason = reason.replace('9', '**عنصريه**');
     if(reason.includes('10')) reason = reason.replace('10', '**دخول باكثر من حساب ومو متبند**');
+    if(!reason.includes("1","2","3","4","5","6","7","8","9","10")) return message.reply(`**$ban list to see the reasons**`);
         var embed = new Discord.RichEmbed()
         .setTitle(`New Ban!`)
         .addField(`For`, `<@${p.user.id}>`)
