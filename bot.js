@@ -105,6 +105,30 @@ client.on('message', message => {
 });
 
 
+client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
+    let reason = message.content.split(" ").slice(2).join(' ');
+    let p = message.mentions.members.first();
+    if(message.content.startsWith(prefix + "ban")){
+        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+            message.delete();
+        if(!p) return message.reply(`Mention a User!`);
+        if(reason.length < 1) return message.reply(`Set a reason!`);
+    if(reason.includes('0')) reason = reason.replace('0', 'سب الاهل'); 
+        var embed = new Discord.RichEmbed()
+        .setTitle(`New Ban!`)
+        .addField(`For`, `<@${p.user.id}>`)
+        .addField(`By`, `<@${message.author.id}>`)
+        .addField(`Reason`, reason)
+        .addField(`In Chat`, `<#${message.channel.id}>`)
+        .setColor("BLACK")
+        .setTimestamp()
+        .setFooter(" ")
+            message.delete();
+        log.send({embed})
+    }
+});
+
 
 client.on('message', message => {
   if(message.content.startsWith(prefix + "bot")){
