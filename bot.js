@@ -142,7 +142,7 @@ client.on('message', message => {
 });
 
 
-client.off('message', message => {
+client.on('message', message => {
     if(message.content === prefix + "ban list"){
         if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
         var embed = new Discord.RichEmbed()
