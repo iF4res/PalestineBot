@@ -35,7 +35,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "warn")){
-        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
@@ -60,7 +60,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "mute")){
-        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
@@ -87,7 +87,7 @@ client.on('message', message => {
     let log = message.guild.channels.find('name', 'log');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "unmute")){
-        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
       if(!p.roles.find('name', "Muted")) return message.reply(`**This user is not Muted**`);
@@ -112,7 +112,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "ban")){
-        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**❌ | This Command is Just for Adminstration**`);
+        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`);
@@ -160,7 +160,7 @@ client.on('message', message => {
         .setColor("BLACK")
         .setTimestamp()
         .setFooter(" ")
-        message.channel.send({embed})
+        message.author.send({embed})
     }
 });
 
