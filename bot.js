@@ -19,6 +19,8 @@ client.on('message', message => {
     .addField(`${prefix}warn`, `**To Warn a user**`)
     .addField(`${prefix}mute`, `**To Mute a user**`)
     .addField(`${prefix}unmute`, `**To Unmute a user**`)
+    .addField(`${prefix}ban list`, `**To see the ban reasons**`)
+    .addField(`${prefix}ban`, `**To ban a user**`)
     .addField(`${prefix}bot`, `**To see the bot status**`)
     .setColor("GREEN")
     .setTimestamp()
@@ -114,16 +116,16 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`);
-    if(reason.includes('1')) reason = reason.replace('1', '**نشر سيرفرات الخاص**'); 
-    if(reason.includes('2')) reason = reason.replace('2', '**سب في الرومات الصوتيه**');
-    if(reason.includes('3')) reason = reason.replace('3', '**استخدام برامج تغيير صوت**');
-    if(reason.includes('4')) reason = reason.replace('4', '**ازعاج الاداره والاعضاء في الرومات العامه**');
-    if(reason.includes('5')) reason = reason.replace('5', '**سب الشخص مسبات قويه ولم ياخذ ميوت**');
-    if(reason.includes('6')) reason = reason.replace('6', '**اسم مسيء - غير لائق**');
-    if(reason.includes('7')) reason = reason.replace('7', '**سب الاهل**');
-    if(reason.includes('8')) reason = reason.replace('8', '**صوره غير لائقه**');
-    if(reason.includes('9')) reason = reason.replace('9', '**عنصريه**');
-    if(reason.includes('10')) reason = reason.replace('10', '**دخول باكثر من حساب ومو متبند**');
+    if(reason.includes('0')) reason = reason.replace('0', '**نشر سيرفرات الخاص**'); 
+    if(reason.includes('1')) reason = reason.replace('1', '**سب في الرومات الصوتيه**');
+    if(reason.includes('2')) reason = reason.replace('2', '**استخدام برامج تغيير صوت**');
+    if(reason.includes('3')) reason = reason.replace('3', '**ازعاج الاداره والاعضاء في الرومات العامه**');
+    if(reason.includes('4')) reason = reason.replace('4', '**سب الشخص مسبات قويه ولم ياخذ ميوت**');
+    if(reason.includes('5')) reason = reason.replace('5', '**اسم مسيء - غير لائق**');
+    if(reason.includes('6')) reason = reason.replace('6', '**سب الاهل**');
+    if(reason.includes('7')) reason = reason.replace('7', '**صوره غير لائقه**');
+    if(reason.includes('8')) reason = reason.replace('8', '**عنصريه**');
+    if(reason.includes('9')) reason = reason.replace('9', '**دخول باكثر من حساب ومو متبند**');
         var embed = new Discord.RichEmbed()
         .setTitle(`New Ban!`)
         .addField(`For`, `<@${p.user.id}>`)
@@ -136,6 +138,29 @@ client.on('message', message => {
             message.channel.send(`<@${message.author.id}>, **Done**`)
             message.delete();
         log.send({embed})
+    }
+});
+
+
+client.off('message', message => {
+    if(message.content === prefix + "ban list"){
+        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
+        var embed = new Discord.RichEmbed()
+        .setTitle('Ban Reasons!')
+        .addField(`$ban @Mention 0`, `**نشر سيرفرات الخاص**`)
+        .addField(`$ban @Mention 1`, `**سب في الرومات الصوتيه**`)
+        .addField(`$ban @Mention 2`, `**استخدام برامج تغيير صوت**`)
+        .addField(`$ban @Mention 3`, `**ازعاج الاداره والاعضاء في الرومات العامه**`)
+        .addField(`$ban @Mention 4`, `**سب الشخص مسبات قويه ولم ياخذ ميوت**`)
+        .addField(`$ban @Mention 5`, `**اسم مسيء - غير لائق**`)
+        .addField(`$ban @Mention 6`, `**سب الاهل**`)
+        .addField(`$ban @Mention 7`, `**صوره غير لائقه**`)
+        .addField(`$ban @Mention 8`, `**عنصريه**`)
+        .addField(`$ban @Mention 9`, `**دخول باكثر من حساب ومو متبند**`)
+        .setColor("BLACK")
+        .setTimestamp()
+        .setFooter(" ")
+        message.channel.send({embed})
     }
 });
 
