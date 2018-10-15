@@ -21,7 +21,6 @@ client.on('message', message => {
     .addField(`${prefix}unmute`, `**To Unmute a user**`)
     .addField(`${prefix}ban list`, `**To see the ban reasons**`)
     .addField(`${prefix}ban`, `**To ban a user**`)
-    .addField(`${prefix}server`, `**To see some server imformation!**`)
     .addField(`${prefix}bot`, `**To see the bot status**`)
     .setColor("GREEN")
     .setTimestamp()
@@ -36,7 +35,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "warn")){
-        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
+        if(!message.member.roles.find('name', "staff")) eturn message.reply(`**You Don't have __staff__ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
@@ -178,22 +177,4 @@ client.on('message', message => {
     .setFooter(" ")
     message.channel.send({embed})
   }
-});
-
-
-client.on('message', message => {
-    if(message.content.startsWith(prefix + "server")){
-        var embed = new Discord.RichEmbed()
-        .setAuthor(message.guild.name)
-        .addField(`:id: Server ID`, message.guild.id)
-        .addField(`:crown: Owned By`, `${message.guild.owner.user.username} [${message.guild.owner.user.id}]`)
-        .addField(`:speech_balloon: Channels`, `${message.guild.channels.filter(channel => channel.type == 'text').size} Text | ${message.guild.channels.filter(channel => channel.type == 'voice').size} Voice`)
-        .addField(`:closed_lock_with_key: Roles [${message.guild.roles.size}]`, `****`)
-        .addField(`:busts_in_silhouette: Members [${message.guild.users.size()}]`, `**${message.guild.members.filter(m => m.presence.status !== 'online').size}** Online`)
-        .addField(`:calendar: Created On`, message.guild.createdAt.toLocaleString() ,true)
-        .setTimestamp()
-        .setColor("RANDOM")
-        .setFooter(" ")
-        message.channel.send({embed})
-    }
 });
