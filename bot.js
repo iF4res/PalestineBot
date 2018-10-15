@@ -245,6 +245,38 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    if(message.content.startsWith(prefix + "")){
+        let roomscate =  message.guild.channels.find('name', "TEMP");
+        if(!roomscate){
+            message.guild.createChannel("TEMP", "category");
+        };
+        message.guild.createChannel(`${message.author.username}`, "text").then(temp => {
+            message.delete();
+                message.channel.send(`Channel Created!`)
+            temp.setParent(roomscate);
+            roomscate.setPosition(1);
+                temp.overwritePermissions(message.guild.id, {
+                    SEND_MESSAGES: false,
+                    READ_MESSAGES: false
+                });
+                temp.overwritePermissions(message.author.id, {
+                    SEND_MESSAGES: true,
+                    READ_MESSAGES: true
+                });
+                let embed = new Discord.RichEmbed()
+                .setTitle(`New Room`)
+                .setColor("RANDOM")
+                .setThumbnail(message.author.avatarURL)
+                .addField(`New Room`, `${temp.channel.name}`)
+                .addField(`For`, `<@${message.author.id}>`)
+
+                temp.sendEmbed(embed);
+        }) .catch();
+    }
+});
+
+
+client.on('message', message => {
   if(message.content.startsWith(prefix + "bot")){
     var embed = new Discord.RichEmbed()
     .setTitle(`${client.user.username}#${client.user.discriminator}'s Status`)
