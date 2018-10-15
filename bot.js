@@ -183,7 +183,7 @@ client.on('message', message => {
 client.on('message', message => {
     if(message.content.startsWith(prefix + "server")){
         var embed = new Discord.RichEmbed()
-        .setAuthor(message.guild.iconURL, message.guild.name)
+        .setAuthor(message.guild.name)
         .addField(`:id: Server ID`, message.guild.id)
         .addField(`:crown: Owned By`, `${message.guild.owner.user.username} [${message.guild.owner.user.id}]`)
         .addField(`:speech_balloon: Channels`, `${message.guild.channels.filter(channel => channel.type == 'text').size} Text | ${message.guild.channels.filter(channel => channel.type == 'voice').size} Voice`)
