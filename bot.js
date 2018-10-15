@@ -34,6 +34,7 @@ client.on('message', message => {
     let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
+    }
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "warn")){
@@ -53,7 +54,6 @@ client.on('message', message => {
             message.channel.send(`${p} ` + reason)
             message.delete();
         log.send({embed})
-        }
     }
 });
 
@@ -62,6 +62,7 @@ client.on('message', message => {
     let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
+    }
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "mute")){
@@ -84,7 +85,6 @@ client.on('message', message => {
             message.delete();
             p.addRole(message.guild.roles.find('name', "Muted"));
         log.send({embed})
-        }
     }
 });
 
@@ -93,6 +93,7 @@ client.on('message', message => {
     let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
+    }
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "unmute")){
         if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
@@ -111,7 +112,6 @@ client.on('message', message => {
             message.delete();
             p.removeRole(message.guild.roles.find('name', "Muted"));
         log.send({embed})
-        }
     }
 });
 
@@ -120,6 +120,7 @@ client.on('message', message => {
     let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
+    }
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "ban")){
@@ -149,7 +150,6 @@ client.on('message', message => {
             message.channel.send(`<@${message.author.id}>, **Done**`)
             message.delete();
         log.send({embed})
-        }
     }
 });
 
