@@ -31,6 +31,8 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    if(!log) {
+        message.guild.createChannel("log", "text");
     let log = message.guild.channels.find('name', 'log');
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
@@ -39,9 +41,6 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
-        if(!log) {
-            message.guild.createChannel("log", "text");
-        }
         var embed = new Discord.RichEmbed()
         .setTitle(`New Warning!`)
         .addField(`For`, `<@${p.user.id}>`)
@@ -54,11 +53,14 @@ client.on('message', message => {
             message.channel.send(`${p} ` + reason)
             message.delete();
         log.send({embed})
+        }
     }
 });
 
 
 client.on('message', message => {
+    if(!log) {
+        message.guild.createChannel("log", "text");
     let log = message.guild.channels.find('name', 'log');
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
@@ -67,11 +69,8 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
-        if(!reason.includes("https://prnt.scr/")) return message.reply(`**The reason must be https://prnt.scr photo**`);
+        if(!reason.includes("https://prntscr.com/")) return message.reply(`**The reason must be https://prntscr.com photo**`);
       if(p.roles.find('name', "Muted")) return message.reply(`**This user is Muted before**`);
-      if(!log) {
-          message.guild.createChannel("log", "text");
-      }
         var embed = new Discord.RichEmbed()
         .setTitle(`New Mute!`)
         .addField(`For`, `<@${p.user.id}>`)
@@ -85,11 +84,14 @@ client.on('message', message => {
             message.delete();
             p.addRole(message.guild.roles.find('name', "Muted"));
         log.send({embed})
+        }
     }
 });
 
 
 client.on('message', message => {
+    if(!log) {
+        message.guild.createChannel("log", "text");
     let log = message.guild.channels.find('name', 'log');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "unmute")){
@@ -97,9 +99,6 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
       if(!p.roles.find('name', "Muted")) return message.reply(`**This user is not Muted**`);
-      if(!log) {
-          message.guild.createChannel("log", "text");
-      }
         var embed = new Discord.RichEmbed()
         .setTitle(`New Unmute!`)
         .addField(`For`, `<@${p.user.id}>`)
@@ -112,11 +111,14 @@ client.on('message', message => {
             message.delete();
             p.removeRole(message.guild.roles.find('name', "Muted"));
         log.send({embed})
+        }
     }
 });
 
 
 client.on('message', message => {
+    if(!log) {
+        message.guild.createChannel("log", "text");
     let log = message.guild.channels.find('name', 'log');
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
@@ -125,9 +127,6 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`);
-        if(!log) {
-            message.guild.createChannel("log", "text");
-        }
     if(reason.includes('0')) reason = reason.replace('0', '**نشر سيرفرات الخاص**'); 
     if(reason.includes('1')) reason = reason.replace('1', '**سب في الرومات الصوتيه**');
     if(reason.includes('2')) reason = reason.replace('2', '**استخدام برامج تغيير صوت**');
@@ -150,6 +149,7 @@ client.on('message', message => {
             message.channel.send(`<@${message.author.id}>, **Done**`)
             message.delete();
         log.send({embed})
+        }
     }
 });
 
