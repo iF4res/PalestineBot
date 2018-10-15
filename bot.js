@@ -31,9 +31,9 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
-    let log = message.guild.channels.find('name', 'log');
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "warn")){
@@ -59,9 +59,9 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
-    let log = message.guild.channels.find('name', 'log');
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "mute")){
@@ -90,9 +90,9 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
-    let log = message.guild.channels.find('name', 'log');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "unmute")){
         if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
@@ -117,9 +117,9 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+    let log = message.guild.channels.find('name', 'log');
     if(!log) {
         message.guild.createChannel("log", "text");
-    let log = message.guild.channels.find('name', 'log');
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "ban")){
