@@ -183,10 +183,10 @@ client.on('message', message => {
 client.on('message', message => {
     if(message.content.startsWith(prefix + "server")){
         var embed = new Discord.RichEmbed()
-        .setTitle(message.guild.name)
+        .setTitle(message.guild.iconURL, message.guild.name)
         .addField(`:id: Server ID`, message.guild.id)
         .addField(`:crown: Owned By`, `${message.guild.owner.user.username} [${message.guild.owner.user.id}]`)
-        .addField(`:speeck_balloon: Channels`, `${message.guild.channels.filter(channel => channel.type == 'text').size} Text | ${message.guild.channels.filter(channel => channel.type == 'voice').size} Voice`)
+        .addField(`:speech_balloon: Channels`, `${message.guild.channels.filter(channel => channel.type == 'text').size} Text | ${message.guild.channels.filter(channel => channel.type == 'voice').size} Voice`)
         .addField(`:calendar: Created On`, message.guild.createdAt.toLocaleString() ,true)
         .setTimestamp()
         .setColor("RANDOM")
