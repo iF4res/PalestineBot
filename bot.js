@@ -35,7 +35,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "warn")){
-        if(!message.member.roles.find('name', "staff")) eturn message.reply(`**You Don't have __staff__ Role**`);
+        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
