@@ -178,3 +178,19 @@ client.on('message', message => {
     message.channel.send({embed})
   }
 });
+
+
+client.on('message', message => {
+    if(message.content.startsWith(prefix + "server")){
+        var embed = new Discord.RichEmbed()
+        .setTitle(message.guild.name)
+        .setThumbnail(message.guild.name, message.guild.iconURL)
+        .addField(`:id: Server ID`, guild.id, true)
+        .addField(`:crown: Owned By`, `${guild.owner.user.username} [${guild.owner.user.id}]`)
+        .addField(`:speeck_ballono: Channels`, `${message.guild.channels.filter(channel => channel.type == 'text').size} Text | ${message.guild.channels.filter(channel => channel.type == 'voice').size} Voice`)
+        .setTimestamp()
+        .setColor("RANDOM")
+        .setFooter(" ")
+        message.channel.send({embed})
+    }
+});
