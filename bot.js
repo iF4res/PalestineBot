@@ -21,6 +21,7 @@ client.on('message', message => {
     .addField(`${prefix}unmute`, `**To Unmute a user**`)
     .addField(`${prefix}ban list`, `**To see the ban reasons**`)
     .addField(`${prefix}ban`, `**To ban a user**`)
+    .addField(`${prefix}server`, `**To see some server imformation!**`)
     .addField(`${prefix}bot`, `**To see the bot status**`)
     .setColor("GREEN")
     .setTimestamp()
