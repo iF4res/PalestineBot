@@ -137,6 +137,7 @@ client.on('message', message => {
         .setFooter(" ")
             message.channel.send(`<@${message.author.id}>, **Done**`)
             message.delete();
+            p.ban();
         log.send({embed})
     }
 });
