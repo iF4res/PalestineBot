@@ -188,6 +188,7 @@ client.on('message', message => {
         .addField(`:id: Server ID`, message.guild.id)
         .addField(`:crown: Owned By`, `${message.guild.owner.user.username} [${message.guild.owner.user.id}]`)
         .addField(`:speech_balloon: Channels`, `${message.guild.channels.filter(channel => channel.type == 'text').size} Text | ${message.guild.channels.filter(channel => channel.type == 'voice').size} Voice`)
+        .addField(`:closed_lock_with_key: Roles`, `[${message.guild.roles.size}]`)
         .addField(`:calendar: Created On`, message.guild.createdAt.toLocaleString() ,true)
         .setTimestamp()
         .setColor("RANDOM")
