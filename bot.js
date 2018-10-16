@@ -35,7 +35,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "warn")){
-        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
+        if(!message.member.roles.find('name', "◆ Support◆")) return message.reply(`**You Don't have ◆ Support◆ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
@@ -60,7 +60,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "mute")){
-        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
+        if(!message.member.roles.find('name', "◆ Support◆")) return message.reply(`**You Don't have ◆ Support◆ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
@@ -87,7 +87,7 @@ client.on('message', message => {
     let log = message.guild.channels.find('name', 'log');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "unmute")){
-        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
+        if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply(`You Don't have **Mute_Members** Permission!`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
       if(!p.roles.find('name', "Muted")) return message.reply(`**This user is not Muted**`);
@@ -112,7 +112,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "ban")){
-        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
+      if(!message.member.hasPermission("BAN_MEMBERS")) return message.reply(`You Don't have **Ban_Members** Permission!`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`);
@@ -145,7 +145,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === prefix + "ban list"){
-        if(!message.member.roles.find('name', "staff")) return message.reply(`**You Don't have __staff__ Role**`);
+      if(!message.member.roles.find('name', "◆ Support◆")) return message.reply(`**You Don't have ◆ Support◆ Role**`);
         var embed = new Discord.RichEmbed()
         .setTitle('Ban Reasons!')
         .addField(`$ban @Mention 0`, `**نشر سيرفرات الخاص**`)
@@ -179,3 +179,58 @@ client.on('message', message => {
     message.channel.send({embed})
   }
 });
+
+
+client.on('message',async message => {
+  if(message.content.startsWith(prefix + "setVoice")) {
+    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply(`You Don't have **MANAGE_CHANNELS** Permission!`);
+  message.channel.send('✅| **Done**');
+  message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
+    console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
+    c.overwritePermissions(message.guild.id, {
+      CONNECT: false,
+      SPEAK: false
+    });
+    setInterval(function() {
+      c.setName(`Voice Online ⇏「 ${message.guild.members.filter(m => m.voiceChannel).size} 」`)
+    },1000);
+  });
+  }
+});
+
+
+client.on('message',async message => {
+  if(message.content.startsWith(prefix + "setChannels")) {
+  if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply(`You Don't have **MANAGE_CHANNELS** Permission!`);
+  message.channel.send('✅| **Done**');
+  message.guild.createChannel(`Members Count : [ ${message.guild.channels.size} ]` , 'voice').then(c => {
+    console.log(`Count Members channel setup for guild: \n ${message.guild.name}`);
+    c.overwritePermissions(message.guild.id, {
+      CONNECT: false,
+      SPEAK: false
+    });
+    setInterval(function() {
+      c.setName(`Rooms Created ⇏「 ${message.guild.channels.size} 」`)
+    },1000);
+  });
+  }
+});
+
+
+client.on('message',async message => {
+  var moment = require('moment');
+    if(message.content.startsWith(prefix + "setDays")) {
+    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply(`You Don't have **MANAGE_CHANNELS** Permission!`);
+    message.channel.send('✅| **Done**');
+    message.guild.createChannel(`Day : ${moment().format('dddd')}` , 'voice').then(c => {
+      console.log(`Day channel setup for guild: \n ${message.guild.name}`);
+      c.overwritePermissions(message.guild.id, {
+        CONNECT: false,
+        SPEAK: false
+      });
+      setInterval(function() {
+        c.setName(`「 ${moment().format('dddd')} 」`);
+      },1000);
+    });
+    }
+  });
