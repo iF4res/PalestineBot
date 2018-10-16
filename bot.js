@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const prefix = "$";
 const client = new Discord.Client();
 
-client.login('NTAwMDM4NzA1NjA0NDYwNTU1.DqeznQ.6uyKIoU9jTF2wwx0RxxjVGaHG78');
+client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => { 
   console.log(`Loggen in As ${client.user.username}`)
@@ -22,6 +22,11 @@ client.on('message', message => {
     .addField(`${prefix}ban list`, `**To see the ban reasons**`)
     .addField(`${prefix}ban`, `**To ban a user**`)
     .addField(`${prefix}bot`, `**To see the bot status**`)
+    .addField(`${prefix}uptime`, `**To see the bot uptime**`)
+    .addField(`${prefix}server`, `**To see the server informations**`)
+    .addField(`${prefix}setVoice`, `**To set up Voice Online Count Room**`)
+    .addField(`${prefix}setDays`, `**To set up Days Display Room**`)
+    .addField(`${prefix}setChannels`, `**To set Channels Count Room**`)
     .setColor("GREEN")
     .setTimestamp()
     .setFooter(" ")
@@ -35,7 +40,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "warn")){
-        if(!message.member.roles.find('name', "◆ Support◆")) return message.reply(`**You Don't have ◆ Support◆ Role**`);
+      if(!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`**You Don't have ◆ Support ◆ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
@@ -60,7 +65,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let p = message.mentions.members.first();
     if(message.content.startsWith(prefix + "mute")){
-        if(!message.member.roles.find('name', "◆ Support◆")) return message.reply(`**You Don't have ◆ Support◆ Role**`);
+      if(!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`**You Don't have ◆ Support ◆ Role**`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
         if(reason.length < 1) return message.reply(`Set a reason!`)
@@ -145,7 +150,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === prefix + "ban list"){
-      if(!message.member.roles.find('name', "◆ Support◆")) return message.reply(`**You Don't have ◆ Support◆ Role**`);
+      if(!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`**You Don't have ◆ Support ◆ Role**`);
         var embed = new Discord.RichEmbed()
         .setTitle('Ban Reasons!')
         .addField(`$ban @Mention 0`, `**نشر سيرفرات الخاص**`)
@@ -181,6 +186,47 @@ client.on('message', message => {
 });
 
 
+client.on('message', message => {
+  if(message.content.startsWith(prefix + "server")){
+    if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`You Don't have **ADMINISTRATOR** Permission!`);
+    var embed = new Discord.RichEmbed()
+    .setAuthor(`${message.guild.name}`, message.guild.iconURL)
+    .addField(`:id: **Server ID**`, message.guild.id, true)
+    .addField(`:crown: **Owned By**`, `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator} [${message.guild.owner.user.id}]`, true)
+    .addField(`:speech_balloon: **Channels [${message.guild.channels.size}]**`, `${message.guild.channels.filter(channel => channel.type == 'text').size} text | ${message.guild.channels.filter(channel => channel.type == 'voice').size} voice`)
+    .addField(`:closed_lock_with_key:  **Roles**`,`**[${message.guild.roles.size}]**`, true)
+    .addField(`:calendar: **Created At**`, message.guild.createdAt.toLocaleString(), true)
+    .addField(`:busts_in_silhouette: **Members [${message.guild.memberCount}]**`, `**${message.guild.members.filter(m=>m.presence.status !== "offline").size}** Online`, true)
+    .setColor("WHITE")
+    .setTimestamp()
+    .setFooter(" ")
+    message.channel.send({embed})
+  }
+});
+
+
+client.on('message', message => {
+  if(message.author.bot) return;
+    if(message.channel.type === 'dm') return;
+      if(message.content.toLowerCase().startsWith(prefix + "uptime")) {
+        if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`You Don't have **ADMINISTRATOR** Permission!`);
+        let upTime = process.uptime();
+  
+        let days = Math.floor(upTime / 86400);
+        upTime %= 86400;
+  
+        let hrs = Math.floor(upTime / 3600);
+        upTime %= 3600;
+  
+        let min = Math.floor(upTime / 60);
+        let sec = Math.floor(upTime % 60);
+
+        message.channel.send(`Uptime : ${days} Day, ${hrs} Hours, ${min} Minutes, ${sec} Secounds`)
+    }
+});
+
+
+//displayers
 client.on('message',async message => {
   if(message.content.startsWith(prefix + "setVoice")) {
     if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply(`You Don't have **MANAGE_CHANNELS** Permission!`);
@@ -234,3 +280,4 @@ client.on('message',async message => {
     });
     }
   });
+//displayers
