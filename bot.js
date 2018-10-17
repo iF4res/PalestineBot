@@ -6,7 +6,7 @@ client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => { 
   console.log(`Loggen in As ${client.user.username}`)
- client.user.setGame(`${prefix}help on ${client.guilds.size}`, "https://twitch.tv/F4res")
+ client.user.setGame(`${prefix}help on ${client.guilds.size} Guild(s)`, "https://twitch.tv/F4res")
  client.user.setStatus(`Idel`)
 });
 
@@ -25,7 +25,6 @@ client.on('message', message => {
     .addField(`${prefix}uptime`, `**To see the bot uptime**`)
     .addField(`${prefix}server`, `**To see the server informations**`)
     .addField(`${prefix}setVoice`, `**To set up Voice Online Count Room**`)
-    .addField(`${prefix}setDays`, `**To set up Days Display Room**`)
     .addField(`${prefix}setChannels`, `**To set Channels Count Room**`)
     .setColor("GREEN")
     .setTimestamp()
@@ -261,23 +260,3 @@ client.on('message',async message => {
   });
   }
 });
-
-
-client.on('message',async message => {
-  var moment = require('moment');
-    if(message.content.startsWith(prefix + "setDays")) {
-    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply(`You Don't have **MANAGE_CHANNELS** Permission!`);
-    message.channel.send('✅| **Done**');
-    message.guild.createChannel(`Day : ${moment().format('dddd')}` , 'voice').then(c => {
-      console.log(`Day channel setup for guild: \n ${message.guild.name}`);
-      c.overwritePermissions(message.guild.id, {
-        CONNECT: false,
-        SPEAK: false
-      });
-      setInterval(function() {
-        c.setName(`「 ${moment().format('dddd')} 」`);
-      },1000);
-    });
-    }
-  });
-//displayers
