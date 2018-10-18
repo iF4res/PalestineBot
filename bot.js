@@ -312,3 +312,10 @@ client.on('message',async message => {
   });
   }
 });
+
+
+client.on('message', message => {
+  if(message.content === `Hi`){
+    message.react(':i5:502485794661859347')
+  }
+});
