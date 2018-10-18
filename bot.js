@@ -45,3 +45,17 @@ client.on('message', message => {
         log.send({embed})
     }
 });
+
+
+client.on('guildMemberAdd', member => {
+    let welcomer = member.guild.channels.find('name', "welcomer");
+    var embed = new Discord.RichEmbed();
+    embed.setAuthor(`${member.user.username}#${member.user.discrimnator}`, member.user.avatarURL)
+    embed.addField(`Welcome`, member)
+    embed.addField(`You are the member number`, member.guild.memberCount)
+    embed.setColor('RANDOM')
+    embed.setTimestamp()
+    embed.setFooter(" ")
+    welcomer.sendEmbed({embed})
+    member.addRole(member.guild.roles.find('name', "◆ Member◆ "));
+});
