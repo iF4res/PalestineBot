@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const ecomoney = require('discord-eco');
 const prefix = "b#";
 const client = new Discord.Client();
 
@@ -311,15 +310,5 @@ client.on('message',async message => {
       c.setName(`Rooms Created ⇏「 ${message.guild.channels.size} 」`)
     },1000);
   });
-  }
-});
-
-
-client.on('message', message => {
-  if (message.content.toUpperCase() === `${prefix}BALANCE`) {
- 
-    economy.fetchBalance(message.author.id).then((i) => { // economy.fetchBalance grabs the userID, finds it, and puts it into 'i'.
-        message.channel.send(`**Balance:** ${i.money}`);
-    })
   }
 });
