@@ -346,8 +346,8 @@ client.on('message',async message => {
     message.channel.send(embed).catch(e => {
       if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
     });
-    if(args[0] === `${prefix}me`){
-        message.channel.send(`${r.points}`)
-    }
+  }
+  if(args[0] === `${prefix}me`){
+      message.channel.send(`${r.points}`)
   }
 });
