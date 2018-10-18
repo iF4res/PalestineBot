@@ -338,7 +338,6 @@ client.on('message',async message => {
     
     let embed = new Discord.RichEmbed();
     embed.setAuthor(message.author.username, message.author.avatarURL);
-    embed.setTitle('#Top');
     embed.setThumbnail(message.guild.iconURL);
     embed.addField(`**TOP 5 TEXT 💬**`, _topText, true);
     embed.setTimestamp()
@@ -347,5 +346,8 @@ client.on('message',async message => {
     message.channel.send(embed).catch(e => {
       if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
     });
+    if(args[0] === `${prefix}me`){
+        message.channel.send(`${r.points}`)
+    }
   }
 });
