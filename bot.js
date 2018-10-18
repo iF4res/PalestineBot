@@ -56,6 +56,6 @@ client.on('guildMemberAdd', member => {
     embed.setColor('RANDOM')
     embed.setTimestamp()
     embed.setFooter(" ")
-    welcomer.sendEmbed({embed})
-    member.addRole(member.guild.roles.find('name', "◆ Member◆ "));
+    member.addRole(member.guild.roles.find('name', "◆ Member ◆"));
+    welcomer.send({embed})
 });
