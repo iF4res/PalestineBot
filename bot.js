@@ -54,7 +54,8 @@ client.on("guildMemberAdd", (member) => {
                   .setTimestamp()
                   .setColor("GREEN")
                   .setFooter(" ")
- channel.send(embed)            
+ channel.send(embed)           
+ member.addRole(member.guild.roles.find('name', "◆ Member ◆ ")); 
  }
             dat[Inv] = Invite.uses;
         })
