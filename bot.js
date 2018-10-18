@@ -44,9 +44,13 @@ client.on("guildMemberAdd", (member) => {
             var Inv = Invite.code;
             if (dat[Inv])
                 if (dat[Inv] < Invite.uses) {
-                    console.log(3);
-                    console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
- channel.send(` ♥ **${member} invited by ${Invite.inviter} ♥** `)            
+                  var embed = new Discord.RichEmbed()
+                  .setTitle(`New User joined!`)
+                  .addField(`He is `, member)
+                  .addField(`Nmber `, message.guild.memberCount)
+                  .addField(`Invited By `, Unvute.inviter ,true)
+                  .addField(`Invite Code `, Invite.code)
+ channel.send(embed)            
  }
             dat[Inv] = Invite.uses;
         })
