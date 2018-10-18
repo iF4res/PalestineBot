@@ -316,6 +316,6 @@ client.on('message',async message => {
 
 client.on('message', message => {
   if(message.content === `Hi`){
-    message.react(':gold:502488722151833606')
+    message.react(':gold:502488592900423690')
   }
 });
