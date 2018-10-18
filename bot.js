@@ -59,3 +59,14 @@ client.on('guildMemberAdd', member => {
     member.addRole(member.guild.roles.find('name', "◆ Member ◆"));
     welcomer.send({embed})
 });
+
+
+
+var wait = new Set();
+client.on("message", function(message) {
+	if( wait.has(message.author.id) ) { 
+		message.channel.send("please cooldown")
+	} else {
+	 	wait.add(message.author.id)	
+	}	
+});
