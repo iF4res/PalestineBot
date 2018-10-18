@@ -47,8 +47,8 @@ client.on("guildMemberAdd", (member) => {
                   var embed = new Discord.RichEmbed()
                   .setTitle(`New User joined!`)
                   .addField(`He is `, member)
-                  .addField(`Nmber `, message.guild.memberCount)
-                  .addField(`Invited By `, Unvute.inviter ,true)
+                  .addField(`Nmber `, member.guild.memberCount)
+                  .addField(`Invited By `, Invite.inviter ,true)
                   .addField(`Invite Code `, Invite.code)
  channel.send(embed)            
  }
