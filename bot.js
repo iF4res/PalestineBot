@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const prefix = "b#";
 const client = new Discord.Client();
+const tpoints = {};
 
 client.login(process.env.BOT_TOKEN);
 
@@ -314,8 +315,37 @@ client.on('message',async message => {
 });
 
 
-client.on('message', message => {
-  if(message.content === `Hi`){
-    message.react(':gold:502488592900423690')
+client.on('message',async message => {  
+  client.users.forEach(m => {
+    if(m.bot) return;
+    if(!tpoints[m.id]) tpoints[m.id] = {points: 0, id: m.id};
+});
+
+
+  if(message.author.bot || message.channel.type === 'dm') return;
+  let args = message.content.split(' ');
+  let member = message.member;
+  let mention = message.mentions.users.first();
+  let guild = message.guild;
+  let author = message.author;
+
+  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
+  tpoints[author.id].points += rPoints;
+  if(args[0] === `${prefix}top`) {
+    let _textPointer = 1;
+    let _textArray = Object.values(tpoints);
+    let _topText = _textArray.slice(0, 5).map(r => `**\`.${_textPointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).sort((a, b) => a > b).join('\n');
+    
+    let embed = new Discord.RichEmbed();
+    embed.setAuthor(message.author.username, message.author.avatarURL);
+    embed.setTitle('#Top');
+    embed.setThumbnail(message.guild.iconURL);
+    embed.addField(`**TOP 5 TEXT 💬**`, _topText, true);
+    embed.setTimestamp()
+    embed.setColor("BLACK")
+    embed.setFooter(" ");
+    message.channel.send(embed).catch(e => {
+      if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
+    });
   }
 });
