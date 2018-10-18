@@ -45,11 +45,15 @@ client.on("guildMemberAdd", (member) => {
             if (dat[Inv])
                 if (dat[Inv] < Invite.uses) {
                   var embed = new Discord.RichEmbed()
+                  .setAuthor(`${member.user.username}`, member.avatarURL)
                   .setTitle(`New User joined!`)
                   .addField(`He is `, member)
                   .addField(`Nmber `, member.guild.memberCount)
                   .addField(`Invited By `, Invite.inviter ,true)
                   .addField(`Invite Code `, Invite.code)
+                  .setTimestamp()
+                  .setColor("GREEN")
+                  .setFooter(" ")
  channel.send(embed)            
  }
             dat[Inv] = Invite.uses;
