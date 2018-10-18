@@ -66,6 +66,7 @@ var wait = new Set();
 client.on("message", function(message) {
 	if( wait.has(message.author.id) ) { 
 		message.channel.send("please cooldown")
+		message.delete();
 	} else {
 	 	wait.add(message.author.id)	
 	}	
