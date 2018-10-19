@@ -124,7 +124,7 @@ client.on('message', message => {
     let reason = message.content.split(" ").slice(2).join(' ');
     let log = message.guild.channels.find('name', "log");
     let MutedRole = message.guild.roles.find('name', "Muted");
-    if(message.content.startsWith(prefix + "mute")){
+    if(message.content.startsWith(prefix + "unmute")){
         if(!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`No **◆ Support ◆** Role Found!`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
@@ -137,7 +137,7 @@ client.on('message', message => {
             message.delete();
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
-        embed.setTitle(`New Mute!`)
+        embed.setTitle(`New UnMute!`)
         embed.addField(`For`, `${p}`)
         embed.addField(`By`, `<@${message.author.id}>`)
         embed.addField(`Reason`, reason)
