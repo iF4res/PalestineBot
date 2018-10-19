@@ -10,6 +10,147 @@ client.user.setGame(`${prefix}help | ${client.guilds.size} Servers`, "https://tw
 client.user.setStatus('Idel')
 });
 
+///welcome
+client.on('guildMemberAdd', member => {
+    let welcomer = member.guild.channels.find('name', "welcomer");
+    var embed = new Discord.RichEmbed();
+    embed.setAuthor(`${member.user.username}#${member.user.discrimnator}`, member.user.avatarURL)
+    embed.addField(`Welcome`, member)
+    embed.addField(`You are the member number`, member.guild.memberCount)
+    embed.setColor('RANDOM')
+    embed.setTimestamp()
+    embed.setFooter(" ")
+    member.addRole(member.guild.roles.find('name', "◆ Member ◆"));
+    welcomer.send({embed})
+});
+///welcome
+///general
+client.on('message', message => {
+    if(message.content.startsWith(prefix + "help")){
+        var embed = new Discord.RichEmbed();
+        embed.setAuthor(`${client.user.username}'s Help`, client.user.avatarURL)
+        embed.addField(`${prefix}help`, "**To get the help list**")
+        embed.addField(`${prefix}bot`, "**To See The Bot Status**")
+        embed.addField(`${prefix}warn`, "**To warn a user**")
+        embed.addField(`${prefix}mute`, "**To Mute a User**")
+        embed.addField(`${prefix}unmute`, "**To UnMute a User**")
+        embed.addField(`${prefix}ban`, "**To ban a user**")
+        embed.setTimestamp()
+        embed.setColor("RANDOM")
+        embed.setFooter(" ")
+        message.channel.send({embed})
+    }
+});
+
+
+client.on('message', message => {
+    if(message.content.startsWith(prefix + "bot")){
+        var embed = new Discord.RichEmbed();
+        embed.setAuthor(`${client.user.username}'s Status`, client.user.avatarURL)
+        embed.addField(`Guilds`, client.Guilds.size)
+        embed.addField(`Users`, client.users.size)
+        embed.addField(`Channels`, client.channels.size)
+        embed.setTimestamp()
+        embed.setColor("RANDOM")
+        embed.setFooter(" ")
+        message.channel.send({embed})
+    }
+});
+///general
+///admins
+client.on('message', message => {
+    let p = message.mentions.members.first();
+    let reason = message.content.split(" ").slice(2).join(' ');
+    let log = message.guild.channels.find('name', "log");
+    if(message.content.startsWith(prefix + "warn")){
+        if(!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`No **◆ Support ◆** Role Find!`);
+            message.delete();
+        if(!p) return message.reply(`Mention a User!`);
+            message.delete();
+        if(reason.length < 1) return message.reply(`Set a reason!`);
+            message.delete();
+        var embed = new Discord.RichEmbed();
+        embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
+        embed.setTitle(`New Warning!`)
+        embed.addField(`For`, `${p}`)
+        embed.addField(`By`, `<@${message.author.id}>`)
+        embed.addField(`Reason`, reason)
+        embed.addField(`In Chat`, `<#${message.channel.id}>`)
+        emvbed.setTimestamp()
+        embed.setColor("WHITE")
+        embed.setFooter(" ")
+        message.channel.send(`${p} ${reason}`)
+            message.delete();
+        log.send({embed})
+    }
+});
+
+
+client.on('message', message => {
+    let p = message.mentions.members.first();
+    let reason = message.content.split(" ").slice(2).join(' ');
+    let log = message.guild.channels.find('name', "log");
+    let MutedRole = message.guild.roles.find('name', "Muted");
+    if(message.content.startsWith(prefix + "mute")){
+        if(!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`No **◆ Support ◆** Role Found!`);
+            message.delete();
+        if(!p) return message.reply(`Mention a User!`);
+            message.delete();
+        if(reason.length < 1) return message.reply(`Set a reason!`);
+            message.delete();
+        if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
+            message.delete();
+        if(p.roles.find('name', "Muted")) return message.reply(`This User is Muted before!`);
+            message.delete();
+        var embed = new Discord.RichEmbed();
+        embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
+        embed.setTitle(`New Mute!`)
+        embed.addField(`For`, `${p}`)
+        embed.addField(`By`, `<@${message.author.id}>`)
+        embed.addField(`Reason`, reason)
+        embed.addField(`In Chat`, `<#${message.channel.id}>`)
+        emvbed.setTimestamp()
+        embed.setColor("PURPLE")
+        embed.setFooter(" ")
+        message.channel.send(`**تم حفظ السبب وستتم مراجعته من قبل المسؤولين**`)
+            message.delete();
+        log.send({embed})
+    }
+});
+
+
+client.on('message', message => {
+    let p = message.mentions.members.first();
+    let reason = message.content.split(" ").slice(2).join(' ');
+    let log = message.guild.channels.find('name', "log");
+    let MutedRole = message.guild.roles.find('name', "Muted");
+    if(message.content.startsWith(prefix + "mute")){
+        if(!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`No **◆ Support ◆** Role Found!`);
+            message.delete();
+        if(!p) return message.reply(`Mention a User!`);
+            message.delete();
+        if(reason.length < 1) return message.reply(`Set a reason!`);
+            message.delete();
+        if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
+            message.delete();
+        if(!p.roles.find('name', "Muted")) return message.reply(`This User is Not Muted!`);
+            message.delete();
+        var embed = new Discord.RichEmbed();
+        embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
+        embed.setTitle(`New Mute!`)
+        embed.addField(`For`, `${p}`)
+        embed.addField(`By`, `<@${message.author.id}>`)
+        embed.addField(`Reason`, reason)
+        embed.addField(`In Chat`, `<#${message.channel.id}>`)
+        emvbed.setTimestamp()
+        embed.setColor("PURPLE")
+        embed.setFooter(" ")
+        message.channel.send(`**<@${message.author.id}>, Done**`)
+            message.delete();
+        log.send({embed})
+    }
+});
+
 
 client.on('message', message => {
     let log = message.guild.channels.find('name', 'log');
@@ -19,7 +160,9 @@ client.on('message', message => {
       if(!message.member.hasPermission("BAN_MEMBERS")) return message.reply(`You Don't have **Ban_Members** Permission!`);
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
+            message.delete();
         if(reason.length < 1) return message.reply(`Set a reason!`);
+            message.delete();
     if(reason.includes('0')) reason = reason.replace('0', '**نشر سيرفرات الخاص**'); 
     if(reason.includes('1')) reason = reason.replace('1', '**سب في الرومات الصوتيه**');
     if(reason.includes('2')) reason = reason.replace('2', '**استخدام برامج تغيير صوت**');
@@ -45,17 +188,4 @@ client.on('message', message => {
         log.send({embed})
     }
 });
-
-
-client.on('guildMemberAdd', member => {
-    let welcomer = member.guild.channels.find('name', "welcomer");
-    var embed = new Discord.RichEmbed();
-    embed.setAuthor(`${member.user.username}#${member.user.discrimnator}`, member.user.avatarURL)
-    embed.addField(`Welcome`, member)
-    embed.addField(`You are the member number`, member.guild.memberCount)
-    embed.setColor('RANDOM')
-    embed.setTimestamp()
-    embed.setFooter(" ")
-    member.addRole(member.guild.roles.find('name', "◆ Member ◆"));
-    welcomer.send({embed})
-});
+///admins
