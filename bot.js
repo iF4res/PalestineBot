@@ -93,7 +93,7 @@ client.on('message', message => {
   
   }).then(messages => message.channel.bulkDelete(messages));
   message.channel.sendMessage("", {embed: {
-    title: `\`\`\`Cleared ${args} Messages! .\`\`\``,
+    title:```js\nClear 100 Messaged!```,
     color: 0x06DF00,
     footer: {
     
