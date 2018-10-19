@@ -47,9 +47,9 @@ client.on('message', message => {
     if(message.content.startsWith(prefix + "bot")){
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${client.user.username}'s Status`, client.user.avatarURL)
-        embed.addField(`Guilds`, client.Guilds.size)
-        embed.addField(`Users`, client.users.size)
-        embed.addField(`Channels`, client.channels.size)
+        embed.addField(`Guilds`, `${client.guilds.size}`)
+        embed.addField(`Users`, `${client.users.size}`)
+        embed.addField(`Channels`, `${client.channels.size}`)
         embed.setTimestamp()
         embed.setColor("RANDOM")
         embed.setFooter(" ")
