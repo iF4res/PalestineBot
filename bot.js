@@ -56,6 +56,21 @@ client.on('message', message => {
         message.channel.send({embed})
     }
 });
+
+
+client.on('message', message => {
+    if(message.content.startsWith(prefix + "server")){
+        var embed = new Discord.RichEmbed();
+        embed.setAuthor(`${message.guild.name}`, message.guild.iconURL)
+        embed.addField(`:id: **Server ID**`, `${message.guild.id}`)
+        embed.addField(`:crown: **Owned By**`, `${message.guild.owner.user.username} [${message.guild.owner.user.id}]`)
+        embed.addField(`:speech_balloon: **Channels [${message.guild.channels.size}]**`, `Under development`)
+        embed.setTimestamp()
+        embed.setColor("RANDOM")
+        embed.setFooter(" ")
+        message.channel.send({embed})
+    }
+});
 ///general
 ///admins
 client.on('message', message => {
