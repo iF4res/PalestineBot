@@ -76,32 +76,6 @@ client.on('message', message => {
         message.channel.send({embed})
     }
 });
-
-
-client.on('message', message => {
-    if (message.content.startsWith(prefix + 'clear')) {
-      if (!message.member.roles.find('name', "◆ Support ◆")) return message.reply(`No **◆ Support ◆** Role Find!`).catch(console.error);
-  message.delete()
-  if(!message.channel.guild) return;
-  let args = message.content.split(" ").slice(1);
-  
-  const messagecount = parseInt(args.join(' '));
-  
-  message.channel.fetchMessages({
-  
-  limit: messagecount
-  
-  }).then(messages => message.channel.bulkDelete(messages));
-  message.channel.sendMessage("", {embed: {
-    title:```js\nCleared!!```,
-    color: 0x06DF00,
-    footer: {
-    
-    }
-    }}).then(msg => {msg.delete(3000)});
-  };
-  
-  });
 ///general
 ///admins
 client.on('message', message => {
