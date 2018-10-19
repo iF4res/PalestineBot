@@ -14,7 +14,7 @@ client.user.setStatus('Idel')
 client.on('guildMemberAdd', member => {
     let welcomer = member.guild.channels.find('name', "welcomer");
     var embed = new Discord.RichEmbed();
-    embed.setAuthor(`${member.user.username}#${member.user.discrimnator}`, member.user.avatarURL)
+    embed.setAuthor(`${member.user.username}#${member.user.discriminator}`, member.user.avatarURL)
     embed.addField(`Welcome`, member)
     embed.addField(`You are the member number`, member.guild.memberCount)
     embed.setColor('RANDOM')
@@ -63,7 +63,7 @@ client.on('message', message => {
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${message.guild.name}`, message.guild.iconURL)
         embed.addField(`:id: **Server ID**`, `${message.guild.id}`)
-        embed.addField(`:crown: **Owned By**`, `${message.guild.owner.user.username} [${message.guild.owner.user.id}]`)
+        embed.addField(`:crown: **Owned By**`, `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator} [${message.guild.owner.user.id}]`)
         embed.addField(`:speech_balloon: **Channels [${message.guild.channels.size}]**`, `Under development`)
         embed.setTimestamp()
         embed.setColor("RANDOM")
