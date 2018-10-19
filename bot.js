@@ -63,10 +63,12 @@ client.on('message', message => {
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${message.guild.name}`, message.guild.iconURL)
         embed.addField(`:id: **Server ID**`, `${message.guild.id}`)
+        embed.addField(`:calendar: **Created On**`, `${message.guild.createdAt}`)
         embed.addField(`:crown: **Owned By**`, `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator} [${message.guild.owner.user.id}]`)
         embed.addField(`:speech_balloon: **Channels [${message.guild.channels.size}]**`, `${message.guild.channels.filter(e => e.type === "text").size} text | ${message.guild.channels.filter(e => e.type === "voice").size} Voice`)
         embed.addField(`:busts_in_silhouette: **Members [${message.guild.memberCount}]**`, `**${message.guild.members.filter(a => a.presence.status !== 'offline').size}** Online`)
         embed.addField(`:earth_africa: **Others**`, `**Region:** ${message.guild.region} \n**Verification Level:** ${message.guild.verificationLevel}`)
+        embed.addField(`:closed_lock_with_key: **Roles**`, `**[${message.guild.roles.size}]**)
         embed.setTimestamp()
         embed.setColor("RANDOM")
         embed.setFooter(" ")
