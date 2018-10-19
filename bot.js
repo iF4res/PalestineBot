@@ -65,7 +65,7 @@ client.on('message', message => {
         embed.addField(`:id: **Server ID**`, `${message.guild.id}`)
         embed.addField(`:crown: **Owned By**`, `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator} [${message.guild.owner.user.id}]`)
         embed.addField(`:speech_balloon: **Channels [${message.guild.channels.size}]**`, `${message.guild.channels.filter(e => e.type === "text").size} text | ${message.guild.channels.filter(e => e.type === "voice").size} Voice`)
-        embed.addField(':busts_in_silhouette: **Members [${message.guild.users.size()}]**, `**${message.guild.members.filter(a => a.presence.status !== "offline").size}** Online`)
+        embed.addField(`:busts_in_silhouette: **Members [${message.guild.users.size()}]**`, `**${message.guild.members.filter(a => a.presence.status !== "offline").size}** Online`)
         embed.setTimestamp()
         embed.setColor("RANDOM")
         embed.setFooter(" ")
