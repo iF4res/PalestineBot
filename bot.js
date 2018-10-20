@@ -8,7 +8,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.username}`)
 client.user.setGame(`${prefix}help | ${client.guilds.size} Servers`, "https://twitch.tv/F4res")
 client.user.setStatus('Idel')
-    var guild = client.guild.get('');
+    var guild = client.guild.get('501839769102188567');
       setInterval(function(){
           var role = guild.roles.find(role => role.name === 'RainBow');
           if(!role) return;
