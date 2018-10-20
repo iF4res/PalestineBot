@@ -88,7 +88,7 @@ client.on('message', message => {
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
         if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete();
+            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         var embed = new Discord.RichEmbed();
@@ -120,7 +120,7 @@ client.on('message', message => {
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
         if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete();
+            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
@@ -156,7 +156,7 @@ client.on('message', message => {
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
         if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete();
+            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
@@ -191,7 +191,7 @@ client.on('message', message => {
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
         if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete();
+            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
     if(reason.includes('0')) reason = reason.replace('0', '**نشر سيرفرات الخاص**'); 
@@ -221,16 +221,3 @@ client.on('message', message => {
     }
 });
 ///admins
-
-
-client.on("ready", () => {
-     var guild = client.guilds.get('501839769102188567');
-         setInterval(function(){
-var role = guild.roles.find(role=> role.name === 'RainBow');
-if(!role) return;
-             role.edit({
-                 color : "RANDOM"
-             });
-         }, 2000)
-
- });
