@@ -256,13 +256,14 @@ client.on('message', message => {
 ///admins
 
 
-client.on('ready', () => {
-    var guild = client.guild.get('501839769102188567');
-      setInterval(function(){
-          var role = guild.roles.find(role => role.name === 'RainBow');
-          if(!role) return;
-          role.edit({
-              color: "RANDOM"
-          });
-      }, 2000)
-});
+client.on("ready", () => {
+     var guild = client.guilds.get('501839769102188567');
+         setInterval(function(){
+var role = guild.roles.find(role=> role.name === 'RainBow');
+if(!role) return;
+             role.edit({
+                 color : "RANDOM"
+             });
+         }, 2000)
+
+ });
