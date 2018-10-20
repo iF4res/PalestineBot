@@ -265,4 +265,4 @@ client.on('ready', () => {
               color: "RANDOM"
           });
       }, 2000)
-})
+});
