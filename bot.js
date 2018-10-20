@@ -87,9 +87,9 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
-        if(reason.length < 1) return message.reply(`Set a reason!`);
-            message.delete();
         if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
+            message.delete();
+        if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
@@ -119,13 +119,13 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
+        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
+            message.delete();
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
             message.delete();
         if(p.roles.find('name', "Muted")) return message.reply(`This User is Muted before!`);
-            message.delete();
-        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
             message.delete();
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
@@ -155,13 +155,13 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
+        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
+            message.delete();
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
             message.delete();
         if(!p.roles.find('name', "Muted")) return message.reply(`This User is Not Muted!`);
-            message.delete();
-        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
             message.delete();
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
@@ -190,9 +190,9 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
-        if(reason.length < 1) return message.reply(`Set a reason!`);
-            message.delete();
         if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
+            message.delete();
+        if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
     if(reason.includes('0')) reason = reason.replace('0', '**نشر سيرفرات الخاص**'); 
     if(reason.includes('1')) reason = reason.replace('1', '**سب في الرومات الصوتيه**');
