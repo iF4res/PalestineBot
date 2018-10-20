@@ -76,51 +76,6 @@ client.on('message', message => {
         message.channel.send({embed})
     }
 });
-
-
-client.on('message', message => {
-    var prefix = "#";
-
-           if (message.content.startsWith(prefix + "id")) {
-                     if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات :x:`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-       
-    .setColor("#0a0909")
-    .setAuthor(message.author.username, message.author.avatarURL) 
-.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
-.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-.addField(': عدد الدعوات', inviteCount,false)
-.setFooter("TINEOUT_408")  
-    message.channel.sendEmbed(id);
-})
-}
-    
-
-         
-     });
 ///general
 ///admins
 client.on('message', message => {
@@ -133,6 +88,8 @@ client.on('message', message => {
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
         if(reason.length < 1) return message.reply(`Set a reason!`);
+            message.delete();
+        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
             message.delete();
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
@@ -147,6 +104,7 @@ client.on('message', message => {
         message.channel.send(`${p} ${reason}`)
             message.delete();
         log.send({embed})
+        }
     }
 });
 
@@ -167,6 +125,8 @@ client.on('message', message => {
             message.delete();
         if(p.roles.find('name', "Muted")) return message.reply(`This User is Muted before!`);
             message.delete();
+        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
+            message.delete();
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
         embed.setTitle(`New Mute!`)
@@ -180,6 +140,7 @@ client.on('message', message => {
         message.channel.send(`**تم حفظ السبب وستتم مراجعته من قبل المسؤولين**`)
             message.delete();
         log.send({embed})
+        }
     }
 });
 
@@ -200,6 +161,8 @@ client.on('message', message => {
             message.delete();
         if(!p.roles.find('name', "Muted")) return message.reply(`This User is Not Muted!`);
             message.delete();
+        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
+            message.delete();
         var embed = new Discord.RichEmbed();
         embed.setAuthor(`${p.user.username}`, p.user.avatarURL)
         embed.setTitle(`New UnMute!`)
@@ -213,6 +176,7 @@ client.on('message', message => {
         message.channel.send(`**<@${message.author.id}>, Done**`)
             message.delete();
         log.send({embed})
+        }
     }
 });
 
@@ -228,6 +192,8 @@ client.on('message', message => {
             message.delete();
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
+        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
+            message.delete();
     if(reason.includes('0')) reason = reason.replace('0', '**نشر سيرفرات الخاص**'); 
     if(reason.includes('1')) reason = reason.replace('1', '**سب في الرومات الصوتيه**');
     if(reason.includes('2')) reason = reason.replace('2', '**استخدام برامج تغيير صوت**');
@@ -237,7 +203,7 @@ client.on('message', message => {
     if(reason.includes('6')) reason = reason.replace('6', '**سب الاهل**');
     if(reason.includes('7')) reason = reason.replace('7', '**صوره غير لائقه**');
     if(reason.includes('8')) reason = reason.replace('8', '**عنصريه**');
-    if(reason.includes('9')) reason = reason.replace('9', '**دخول باكثر من حساب ومو متبند**');
+    if(reason.includes('9')) reason = reason.replace('9', '**دخول باكثر من حساب وهو متبند**');
         var embed = new Discord.RichEmbed()
         .setTitle(`New Ban!`)
         .addField(`For`, `<@${p.user.id}>`)
@@ -251,6 +217,7 @@ client.on('message', message => {
             message.delete();
             p.ban();
         log.send({embed})
+        }
     }
 });
 ///admins
