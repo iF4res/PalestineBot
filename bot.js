@@ -8,6 +8,14 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.username}`)
 client.user.setGame(`${prefix}help | ${client.guilds.size} Servers`, "https://twitch.tv/F4res")
 client.user.setStatus('Idel')
+    var guild = client.guild.get('');
+      setInterval(function(){
+          var role = guild.roles.find(role => role.name === 'RainBow');
+          if(!role) return;
+          role.edit({
+              color: "RANDOM"
+          });
+      }, 2000)
 });
 
 ///welcome
