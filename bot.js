@@ -89,7 +89,7 @@ client.on('message', message => {
         .setTimestamp()
         .setColor("GOLD")
         .setFooter(" ")
-        message.channelI.send({embed})
+        message.channel.send({embed})
     }
 });
 ///general
