@@ -76,6 +76,22 @@ client.on('message', message => {
         message.channel.send({embed})
     }
 });
+
+
+client.on('message', message => {
+    let playername = message.content.split(" ").slice(1).join(' ');
+    if(message.content.startsWith(prefix + "hypixel")){
+        if(!playername) return message.reply('**type a player name**');
+        var embed = new Discord.RichEmbed()
+        .setTitle(`ClickHere`)
+        .setDescription(`${playername}'s Profile`)
+        .setURL(`https://hypixel.net/player/${playername}`)
+        .setTimestamp()
+        .setColor("GOLD")
+        .setFooter(" ")
+        message.channelI.send({embed})
+    }
+});
 ///general
 ///admins
 client.on('message', message => {
