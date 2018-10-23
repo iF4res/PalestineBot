@@ -79,9 +79,9 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    let playername = message.content.split(" ").slice(1).join(' ');
+    let p1 = message.content.split(" ").slice(1).join(' ');
     if(message.content.startsWith(prefix + "hypixel")){
-        if(playername.length < 1) return message.reply('**type a player name**');
+        if(!p1) return message.reply('**type a player name**');
         var embed = new Discord.RichEmbed();
         embed.setTitle(`ClickHere`)
         embed.setDescription(`${playername}'s Profile`)
