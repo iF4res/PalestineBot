@@ -82,13 +82,13 @@ client.on('message', message => {
     let playername = message.content.split(" ").slice(1).join(' ');
     if(message.content.startsWith(prefix + "hypixel")){
         if(playername.length < 1) return message.reply('**type a player name**');
-        var embed = new Discord.RichEmbed()
-        .setTitle(`ClickHere`)
-        .setDescription(`${playername}'s Profile`)
-        .setURL(`https://hypixel.net/player/${playername}`)
-        .setTimestamp()
-        .setColor("GOLD")
-        .setFooter(" ")
+        var embed = new Discord.RichEmbed();
+        embed.setTitle(`ClickHere`)
+        embed.setDescription(`${playername}'s Profile`)
+        embed.setURL(`https://hypixel.net/player/${playername}`)
+        embed.setTimestamp()
+        embed.setColor("ORANGE")
+        embed.setFooter(" ")
         message.channel.send({embed})
     }
 });
