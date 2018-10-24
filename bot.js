@@ -31,6 +31,7 @@ client.on('message', message => {
         embed.setAuthor(`${client.user.username}'s Help`, client.user.avatarURL)
         embed.addField(`${prefix}help`, "**To get the help list**")
         embed.addField(`${prefix}bot`, "**To See The Bot Status**")
+        embed.addField(`${prefix}server`, "**To See The Server Status**")
         embed.addField(`${prefix}warn`, "**To warn a user**")
         embed.addField(`${prefix}mute`, "**To Mute a User**")
         embed.addField(`${prefix}unmute`, "**To UnMute a User**")
@@ -79,12 +80,20 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    let args = message.content.split(" ").slice(1).join(' ')
-    let guild = message.guild;
-    if(message.content.startsWith(prefix + "bc")){
-        if(!args) return message.reply(`HUMMM`);
-        if(!message.member.hasPermission('ADMINSTRATION')) return message.reply(`:x: | This Command is Just For Adminstration`);
-        guild.members.sendMessage(args)
+    let args = message.content.split(" ").slice(1).join(' ');
+    let announcements = message.guild.channels.find('name', 'announcements');
+    if(message.content.startsWith(prefix + "rbc")){
+        var embed = new Discord.RichEmbed()
+        .setAuthor(`${message.guild.name}`, message.guild.iconURL)
+        .setDescription(`Announced By ${message.author.username}#${message.author.discriminator}`)
+        .setThumbnail(message.guild.iconURL)
+        .addField(`Server Name`, message.guild.name)
+        .addField(`By`, message.author.username)
+        .addField(`News`, args)
+        .setColor()
+        .setTimestamp()
+        .setFooter(`${message.guild.name}`)
+        announcements.send({embed})
     }
 });
 ///general
