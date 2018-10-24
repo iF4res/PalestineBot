@@ -79,17 +79,12 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    let p1 = message.content.split(" ").slice(1).join(' ');
-    if(message.content.startsWith(prefix + "hypixel")){
-        if(!p1) return message.reply('**type a player name**');
-        var embed = new Discord.RichEmbed();
-        embed.setTitle(`ClickHere`)
-        embed.setDescription(`${playername}'s Profile`)
-        embed.setURL(`https://hypixel.net/player/${playername}`)
-        embed.setTimestamp()
-        embed.setColor("ORANGE")
-        embed.setFooter(" ")
-        message.channel.send({embed})
+    let args = message.content.split(" ").slice(1).join(' ')
+    let guild = message.guild;
+    if(message.content.startsWith(prefix + "bc")){
+        if(!args) return message.reply(`HUMMM`);
+        if(!message.member.hasPermission('ADMINSTRATION')) return message.reply(`:x: | This Command is Just For Adminstration`);
+        guild.members.sendMessage(args)
     }
 });
 ///general
@@ -103,8 +98,6 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
-        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         var embed = new Discord.RichEmbed();
@@ -120,7 +113,6 @@ client.on('message', message => {
         message.channel.send(`${p} ${reason}`)
             message.delete();
         log.send({embed})
-        }
     }
 });
 
@@ -135,8 +127,6 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
-        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
@@ -156,7 +146,6 @@ client.on('message', message => {
         message.channel.send(`**تم حفظ السبب وستتم مراجعته من قبل المسؤولين**`)
             message.delete();
         log.send({embed})
-        }
     }
 });
 
@@ -171,8 +160,6 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
-        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
         if(!MutedRole) return message.reply(`No **Muted** Role Found!`);
@@ -192,7 +179,6 @@ client.on('message', message => {
         message.channel.send(`**<@${message.author.id}>, Done**`)
             message.delete();
         log.send({embed})
-        }
     }
 });
 
@@ -206,8 +192,6 @@ client.on('message', message => {
             message.delete();
         if(!p) return message.reply(`Mention a User!`);
             message.delete();
-        if(reason.length >= 512) return message.reply('Reason Must be less than 500 letter').then(message=> {
-            message.delete(7500)
         if(reason.length < 1) return message.reply(`Set a reason!`);
             message.delete();
     if(reason.includes('0')) reason = reason.replace('0', '**نشر سيرفرات الخاص**'); 
@@ -233,7 +217,6 @@ client.on('message', message => {
             message.delete();
             p.ban();
         log.send({embed})
-        }
     }
 });
 ///admins
